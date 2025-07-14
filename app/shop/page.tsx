@@ -26,7 +26,8 @@ export default function Shop() {
   const cartItems = useCartStore((state) => state.items);
   const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-  const categories = ['all', ...new Set(products.map(p => p.category))];
+  // ✅ FIXED: Convert Set to Array using Array.from()
+  const categories = ['all', ...Array.from(new Set(products.map(p => p.category)))];
 
   const filteredProducts = products
     .filter(product => 
